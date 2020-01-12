@@ -16,6 +16,6 @@ public class PersonController {
     @GetMapping(value = "/api/v1/person/{id}")
     @ResponseBody
     public String hello(@PathVariable("id") Integer id) {
-        return personService.findPersonById(id);
+        return personService.getPersonById(id);
     }
 }

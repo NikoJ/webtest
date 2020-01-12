@@ -1,24 +1,17 @@
 package com.npotapov.service;
 
-import com.npotapov.model.Person;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Arrays;
-import java.util.List;
+import com.npotapov.repository.PersonRepository;
 
 @Service
 public class PersonService implements IPersonService {
 
-    private static final List<Person> TEST_PERSONS = Arrays.asList(new Person("Nick", 1), new Person("Jain", 2), new Person("Tom", 3));
+    @Autowired
+    private PersonRepository personRepository;
 
     @Override
-    public String findPersonById(Integer id) {
-
-        for (Person person : TEST_PERSONS) {
-            if (person.getId().equals(id)) {
-                return person.toString();
-            }
-        }
-        return "Not found person with id = " + id;
+    public String getPersonById(Integer id) {
+        return personRepository.findPersonById(id);
     }
 }
